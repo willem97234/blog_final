@@ -30,16 +30,10 @@ class HomeController extends AbstractController
             ->getRepository(Post::class)
             ->findAll();
 
-        $comments = $this->getDoctrine()
-            ->getRepository(Comment::class)
-            ->findAll();
 
-        $user = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->find();
 
         return $this->render('home.html.twig', [
-            'posts' => $posts, 'comments' => $comments, 'user' => $user
+            'posts' => $posts,
         ]);
 
 
