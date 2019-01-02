@@ -9,8 +9,9 @@
 namespace App\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
-class UserRepository extends EntityRepository
+class UserRepository extends EntityRepository implements UserLoaderInterface
 {
     public function findAllOrderedByName()
     {
@@ -19,5 +20,14 @@ class UserRepository extends EntityRepository
                 'SELECT p FROM App:User p ORDER BY p.name ASC'
             )
             ->getResult();
+    }
+    
+    public function loadUserByUsername($username)
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.email = :email')
+            ->setParameter('email', $username)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
