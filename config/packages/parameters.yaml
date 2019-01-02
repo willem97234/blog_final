@@ -1,0 +1,11 @@
+parameters:
+  database_host: 127.0.0.1
+  database_port: 3306
+  database_name: symfony-got
+  database_user: homestead
+  database_password: secret
+  mailer_transport: smtp
+  mailer_host: 127.0.0.1
+  mailer_user: null
+  mailer_password: null
+  secret: 81d300585b3dfdf6a3161e48d970e2baea252e42

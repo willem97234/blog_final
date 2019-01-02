@@ -1,0 +1,19 @@
+login:
+  path: /login
+  controller: App\Controller\SecurityController::loginAction
+
+register:
+  path: /register
+  controller: App\Controller\RegistrationController::registerAction
+
+home:
+  path: /home
+  controller: App\Controller\HomeController::homeAction
+
+postComment:
+  path: /postComment
+  controller: App\Controller\AddCommentController::commentAction
+
+postPost:
+  path: /postPost
+  controller: App\Controller\AddPostController::postAction
