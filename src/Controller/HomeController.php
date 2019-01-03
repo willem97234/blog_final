@@ -20,16 +20,14 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/home", name="home")
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function homeAction(Request $request)
+    public function homeAction()
     {
 
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findAll();
-
 
 
         return $this->render('home.html.twig', [

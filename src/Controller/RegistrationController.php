@@ -42,6 +42,7 @@ public function registerAction (Request $request, UserPasswordEncoderInterface $
 
             $user->setEmail($form->get("email")->getData());
             $user->setName($form->get("name")->getData());
+            $user->setDescription2($form->get("description2")->getData());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

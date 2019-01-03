@@ -15,5 +15,13 @@ postComment:
   controller: App\Controller\AddCommentController::commentAction
 
 postPost:
-  path: /postPost
+  path: /postPost/{id}
   controller: App\Controller\AddPostController::postAction
+
+showPost:
+  path: /showPost/{id}
+  controller: App\Controller\AddPostController::showPost
+
+deletePost:
+    path: /deletePost/{id}
+    controller: App\Controller\AddPostController::deletePost

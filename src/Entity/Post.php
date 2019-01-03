@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
+ * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @ORM\Entity
  * @ORM\Table(name="post")
  */
@@ -37,6 +38,22 @@ class Post
      * @ORM\Column(name="content",type="string", length=255)
      */
     public $content;
+
+    /**
+     * @Assert\Date
+     * @var string A "Y-m-d" formatted value
+     */
+
+
+    /**
+     * @ORM\Column(name="date",type="string", length=255)
+     */
+    protected $date;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $userid;
 
 
     public function eraseCredentials()
@@ -72,6 +89,29 @@ class Post
     public function __toString()
     {
         return $this->getTitle() . ", " . $this->getContent();
+    }
+
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+    }
+
+    public function getUserid(): ?int
+    {
+        return $this->userid;
+    }
+
+    public function setUserid(int $userid)
+    {
+        $this->userid = $userid;
+
     }
 
 }

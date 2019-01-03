@@ -24,7 +24,7 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
     private $router;
     private $csrfTokenManager;
     private $passwordEncoder;
-    
+
     public function __construct(RouterInterface $router, CsrfTokenManagerInterface $csrfTokenManager,UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->router = $router;
@@ -85,6 +85,7 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
 
         // For example : return new RedirectResponse($this->router->generate('some_route'));
         return new RedirectResponse($this->router->generate('home'));
+
     }
 
     protected function getLoginUrl()

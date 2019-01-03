@@ -52,6 +52,13 @@ class User implements UserInterface
     protected $password;
 
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description2;
+
+
+
     public function eraseCredentials()
     {
         return null;
@@ -124,5 +131,16 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getEmail().", ".$this->getName();
+    }
+
+    public function getDescription2()
+    {
+        return $this->description2;
+    }
+
+    public function setDescription2($description2)
+    {
+        $this->description2 = $description2;
+
     }
 }
