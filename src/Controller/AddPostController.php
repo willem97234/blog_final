@@ -111,4 +111,52 @@ class AddPostController extends AbstractController
         // return $this->render('product/show.html.twig', ['product' => $product]);
     }
 
+    /**
+     * @Route("/updatePost", name="showPost")
+     * @param Request $request
+     * @param $id
+     * @return Response
+     * @throws \Exception
+     */
+    public function updatePost(Request $request,$id)
+    {
+        $post = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->find($id);
+
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+
+
+        if (!$post) {
+            throw $this->createNotFoundException(
+                'No post found for id '.$id
+            );
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $post->setTile($form->get('title')->getData());
+            $post->setContent($form->get('content')->getData());
+
+            $date = new DateTime();
+            $result = $date->format('Y-m-d H:i:s');
+            $post->setDate($result);
+
+            // Save
+            $em->flush();
+
+            return $this->redirectToRoute('home');
+
+        }
+        //return new Response('Check out this great product: '.$post->getName());
+
+        // or render a template
+        // in the template, print things with {{ product.name }}
+        return $this->render('updatePost.html.twig', [
+            'form' => $form->createView(), 'post'=> $post
+        ]);
+    }
+
 }
